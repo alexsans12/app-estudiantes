@@ -37,6 +37,10 @@ class ObservacionController extends AppController
             'contain' => ['Estudiante'],
         ]);
 
+        echo "<pre>";
+        var_dump($observacion);
+        die();
+
         $this->set(compact('observacion'));
     }
 
