@@ -3,47 +3,25 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * Curso Controller
- *
- * @property \App\Model\Table\CursoTable $Curso
- * @method \App\Model\Entity\Curso[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class CursoController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
+
     public function index()
     {
-        $curso = $this->paginate($this->Curso);
-
-        $this->set(compact('curso'));
+        $cursos = $this->paginate($this->Curso);
+        $semestres = $this->Curso->Semestre->find()->all()->combine('ID_SEMESTRE', 'NOMBRE')->ToArray();
+        $this->set(compact('cursos', 'semestres'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Curso id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $curso = $this->Curso->get($id, [
-            'contain' => [],
+            'contain' => ['Semestre'],
         ]);
 
         $this->set(compact('curso'));
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $curso = $this->Curso->newEmptyEntity();
@@ -56,20 +34,15 @@ class CursoController extends AppController
             }
             $this->Flash->error(__('The curso could not be saved. Please, try again.'));
         }
-        $this->set(compact('curso'));
+
+        $semestres = $this->Curso->Semestre->find()->all()->combine('ID_SEMESTRE', 'NOMBRE');
+        $this->set(compact('curso', 'semestres'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Curso id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $curso = $this->Curso->get($id, [
-            'contain' => [],
+            'contain' => ['Semestre'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $curso = $this->Curso->patchEntity($curso, $this->request->getData());
@@ -80,7 +53,10 @@ class CursoController extends AppController
             }
             $this->Flash->error(__('The curso could not be saved. Please, try again.'));
         }
-        $this->set(compact('curso'));
+
+        $semestres = $this->Curso->Semestre->find()->all()->combine('ID_SEMESTRE', 'NOMBRE');
+
+        $this->set(compact('curso', 'semestres'));
     }
 
     /**

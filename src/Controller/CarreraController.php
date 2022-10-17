@@ -58,10 +58,10 @@ class CarreraController extends AppController
             $carrera = $this->Carrera->patchEntity($carrera, $this->request->getData());
 
             if ($this->Carrera->save($carrera)) {
-                $this->Flash->success(__('The carrera has been saved.'));
+                $this->Flash->success(__('Se guardo correctamente.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The carrera could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente.'));
         }
         $this->set(compact('carrera'));
     }
@@ -81,11 +81,11 @@ class CarreraController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $carrera = $this->Carrera->patchEntity($carrera, $this->request->getData());
             if ($this->Carrera->save($carrera)) {
-                $this->Flash->success(__('The carrera has been saved.'));
+                $this->Flash->success(__('Se actualizo correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The carrera could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente'));
         }
         $this->set(compact('carrera'));
     }
@@ -102,9 +102,9 @@ class CarreraController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $carrera = $this->Carrera->get($id);
         if ($this->Carrera->delete($carrera)) {
-            $this->Flash->success(__('The carrera has been deleted.'));
+            $this->Flash->success(__('Se a eliminado correctamente.'));
         } else {
-            $this->Flash->error(__('The carrera could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente'));
         }
 
         return $this->redirect(['action' => 'index']);

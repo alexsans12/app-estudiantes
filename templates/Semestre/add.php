@@ -7,22 +7,20 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Semestre'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Acciones') ?></h4>
+            <?= $this->Html->link(__('Listado de Semestres'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="semestre form content">
             <?= $this->Form->create($semestre) ?>
             <fieldset>
-                <legend><?= __('Add Semestre') ?></legend>
+                <legend><?= __('Agregar Semestre') ?></legend>
                 <?php
-                    echo $this->Form->control('carreras.id', ['label' => 'Escoge una Carrera', 'name' => 'ID_CARRERA', 'options' => $carreras]);
-                    echo $this->Form->control('cursos.id', ['label' => 'Escoge un Curso', 'name' => 'ID_CURSO', 'options' => $cursos]);
-                    echo $this->Form->control('CODIGO_SEMESTRE');
+                    echo $this->Form->control('NOMBRE',['label'=>'Nombre del Semestre']);
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Guardar')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>

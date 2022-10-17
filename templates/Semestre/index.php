@@ -6,15 +6,13 @@
 ?>
 <div class="semestre index content">
     <?= $this->Html->link(__('Agregar Semestre'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Semestre') ?></h3>
+    <h3><?= __('Semestres') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('Id') ?></th>
-                    <th><?= $this->Paginator->sort('Carrera') ?></th>
-                    <th><?= $this->Paginator->sort('Curso') ?></th>
-                    <th><?= $this->Paginator->sort('Semestre') ?></th>
+                    <th><?= $this->Paginator->sort('ID_SEMESTRE', 'ID') ?></th>
+                    <th><?= $this->Paginator->sort('NOMBRE','Nombre del Semestre') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,13 +21,10 @@
                 ?>
                 <tr>
                     <td><?= $this->Number->format($semestre->ID_SEMESTRE) ?></td>
-                    <td><?= $carreras[$semestre->ID_CARRERA] ?></td>
-                    <td><?= $cursos[$semestre->ID_CURSO] ?></td>
-                    <td><?= h($semestre->CODIGO_SEMESTRE) ?></td>
+                    <td><?= h($semestre->NOMBRE) ?></td>
                     <td class="actions btn-group">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $semestre->ID_SEMESTRE]) ?>
                         <?= $this->Html->link(__('Editar'), ['action' => 'edit', $semestre->ID_SEMESTRE]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $semestre->ID_SEMESTRE], ['confirm' => __('Are you sure you want to delete # {0}?', $semestre->ID_SEMESTRE)]) ?>
+                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $semestre->ID_SEMESTRE], ['confirm' => __('Esta seguro de eliminar el semestre con id # {0}?', $semestre->ID_SEMESTRE)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

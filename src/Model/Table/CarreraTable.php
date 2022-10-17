@@ -41,11 +41,7 @@ class CarreraTable extends Table
         $this->setDisplayField('ID_CARRERA');
         $this->setPrimaryKey('ID_CARRERA');
 
-        $this->belongsToMany('Semestre',[
-            'foreignKey' => 'ID_CARRERA',
-            'targetForeignKey' => 'ID_CURSO',
-            'joinTable' => 'semestre',
-        ]);
+        $this->hasMany('Estudiante');
     }
 
     /**
@@ -64,7 +60,7 @@ class CarreraTable extends Table
 
         $validator
             ->scalar('DESCRIPCION')
-            ->maxLength('DESCRIPCION', 500)
+            ->maxLength('DESCRIPCION', 200)
             ->allowEmptyString('DESCRIPCION');
 
         $validator

@@ -7,21 +7,17 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Carrera'), ['action' => 'edit', $carrera->ID_CARRERA], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Carrera'), ['action' => 'delete', $carrera->ID_CARRERA], ['confirm' => __('Are you sure you want to delete # {0}?', $carrera->ID_CARRERA), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Carrera'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Carrera'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <h4 class="heading"><?= __('Accciones') ?></h4>
+            <?= $this->Html->link(__('Editar Carrera'), ['action' => 'edit', $carrera->ID_CARRERA], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Borrar Carrera'), ['action' => 'delete', $carrera->ID_CARRERA], ['confirm' => __('Esta seguro de borrar la carrera con id # {0}?', $carrera->ID_CARRERA), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Listado de Carreras'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Agregar Carrera'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="carrera view content">
             <h3><?= h($carrera->ID_CARRERA) ?></h3>
             <table>
-                <tr>
-                    <th><?= __('ID') ?></th>
-                    <td><?= $this->Number->format($carrera->ID_CARRERA) ?></td>
-                </tr>
                 <tr>
                     <th><?= __('Nombre') ?></th>
                     <td><?= h($carrera->NOMBRE) ?></td>

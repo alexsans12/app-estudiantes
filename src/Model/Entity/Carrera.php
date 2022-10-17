@@ -5,14 +5,6 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-/**
- * Carrera Entity
- *
- * @property int $ID_CARRERA
- * @property string $NOMBRE
- * @property string|null $DESCRIPCION
- * @property bool $ESTADO
- */
 class Carrera extends Entity
 {
     /**
