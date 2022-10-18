@@ -4,14 +4,14 @@
  * @var \App\Model\Entity\Semestre $semestre
  */
 ?>
-<div class="row">
-    <aside class="column">
+<div class="row mb-5">
+    <aside class="col-3">
         <div class="side-nav">
             <h4 class="heading"><?= __('Acciones') ?></h4>
             <?= $this->Html->link(__('Listado de Semestres'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="col">
         <div class="semestre form content">
             <?= $this->Form->create($semestre) ?>
             <fieldset>

@@ -17,10 +17,16 @@ class EstudianteController extends AppController
     public function view($id = null)
     {
         $estudiante = $this->Estudiante->get($id, [
-            'contain' => ['Carrera'],
+            'contain' => ['Carrera', 'Observacion', 'Notas'],
         ]);
 
-        $this->set(compact('estudiante'));
+        /*echo "<pre>";
+        var_dump($estudiante->notas);
+        die();*/
+
+        $cursos = $this->getTableLocator()->get('Curso')->find()->all()->combine('ID_CURSO', 'NOMBRE')->ToArray();
+
+        $this->set(compact('estudiante', 'cursos'));
     }
 
     public function add()
@@ -42,11 +48,11 @@ class EstudianteController extends AppController
             }
 
             if ($this->Estudiante->save($estudiante)) {
-                $this->Flash->success(__('The estudiante has been saved.'));
+                $this->Flash->success(__('Se guardo correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The estudiante could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente.'));
         }
 
         $carreras = $this->Estudiante->Carrera->find()->where(['ESTADO'=>true])->all()->combine('ID_CARRERA', 'NOMBRE');
@@ -81,11 +87,11 @@ class EstudianteController extends AppController
 
 
             if ($this->Estudiante->save($estudiante)) {
-                $this->Flash->success(__('The estudiante has been saved.'));
+                $this->Flash->success(__('Se guardo correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The estudiante could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente.'));
         }
 
         $carreras = $this->Estudiante->Carrera->find()->where(['ESTADO'=>true])->all()->combine('ID_CARRERA', 'NOMBRE');
@@ -101,9 +107,9 @@ class EstudianteController extends AppController
             if (file_exists(WWW_ROOT."img/fotografias/".$estudiante->FOTOGRAFIA)) {
                 unlink(WWW_ROOT."img/fotografias/".$estudiante->FOTOGRAFIA);
             }
-            $this->Flash->success(__('The estudiante has been deleted.'));
+            $this->Flash->success(__('Se eliminado correctamente.'));
         } else {
-            $this->Flash->error(__('The estudiante could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba eliminar de la base de datos. Por favor, intente de nuevamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

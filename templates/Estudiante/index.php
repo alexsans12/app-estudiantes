@@ -4,8 +4,8 @@
  * @var iterable<\App\Model\Entity\Estudiante> $estudiante
  */
 ?>
-<div class="estudiante index content">
-    <?= $this->Html->link(__('Agregar Estudiante'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+<div class="estudiante index content mb-5">
+    <a href="/estudiante/add" class="btn btn-primary float-right fs-2 px-5 px-2"><i class="bi bi-plus-circle"></i></a>
     <h3><?= __('Estudiantes') ?></h3>
     <div class="table-responsive">
         <table>
@@ -29,10 +29,10 @@
                     <td><?= h($estudiante->FOTOGRAFIA) ? 'Tiene Foto' : 'No tiene Foto' ?></td>
                     <td><?= h($estudiante->FECHA_NACIMIENTO) ?></td>
                     <td><?= h($carreras[$estudiante->ID_CARRERA]) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $estudiante->ID_ESTUDIANTE]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $estudiante->ID_ESTUDIANTE]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $estudiante->ID_ESTUDIANTE], ['confirm' => __('Seguro que quiere borrar al estudiante con id # {0}?', $estudiante->ID_ESTUDIANTE)]) ?>
+                    <td class="actions btn-group">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['action' => 'view', $estudiante->ID_ESTUDIANTE], ['class'=>'btn btn-success fs-3 p-3 text-light', 'escape'=>false]) ?>
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['action' => 'edit', $estudiante->ID_ESTUDIANTE], ['class'=>'btn btn-warning fs-3 p-3 text-dark', 'escape'=>false]) ?>
+                        <?= $this->Form->postLink('<i class="bi bi-trash3"></i>', ['action' => 'delete', $estudiante->ID_ESTUDIANTE], ['confirm' => __('Seguro que quiere borrar al estudiante con id # {0}?', $estudiante->ID_ESTUDIANTE), 'class'=>'btn btn-danger fs-3 p-3 text-light', 'escape'=>false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

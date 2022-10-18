@@ -5,7 +5,7 @@
  */
 ?>
 <div class="observacion index content">
-    <?= $this->Html->link(__('Agregar Observacion'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link('<i class="bi bi-plus-circle"></i>', ['action' => 'add'], ['class'=>'btn btn-primary float-right fs-2 px-5 px-2', 'escape'=>false]) ?>
     <h3><?= __('Observaciones') ?></h3>
     <div class="table-responsive">
         <table>
@@ -25,10 +25,10 @@
                     <td><?= h($estudiantes[$observacion->ID_ESTUDIANTE]) ?></td>
                     <td><?= h($observacion->TIPO) ? 'Advertencia' : 'Felicitación' ?></td>
                     <td><?= h($observacion->FECHA_OBSERVACION->nice()) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $observacion->ID_OBSERVACION]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $observacion->ID_OBSERVACION]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $observacion->ID_OBSERVACION], ['confirm' => __('Esta seguro de de borrar la observación con id # {0}?', $observacion->ID_OBSERVACION)]) ?>
+                    <td class="actions btn-group">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['action' => 'view', $observacion->ID_OBSERVACION], ['class'=>'btn btn-success fs-3 p-3 text-light', 'escape'=>false]) ?>
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['action' => 'edit', $observacion->ID_OBSERVACION], ['class'=>'btn btn-warning fs-3 p-3 text-dark', 'escape'=>false]) ?>
+                        <?= $this->Form->postLink('<i class="bi bi-trash3"></i>', ['action' => 'delete', $observacion->ID_OBSERVACION], ['confirm' => __('Esta seguro de de borrar la observación con id # {0}?', $observacion->ID_OBSERVACION), 'class'=>'btn btn-danger fs-3 p-3 text-light', 'escape'=>false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

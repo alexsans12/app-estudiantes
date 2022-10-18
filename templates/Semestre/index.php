@@ -5,7 +5,7 @@
  */
 ?>
 <div class="semestre index content">
-    <?= $this->Html->link(__('Agregar Semestre'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link('<i class="bi bi-plus-circle"></i>', ['action' => 'add'], ['class'=>'btn btn-primary float-right fs-2 px-5 px-2', 'escape'=>false]) ?>
     <h3><?= __('Semestres') ?></h3>
     <div class="table-responsive">
         <table>
@@ -23,8 +23,8 @@
                     <td><?= $this->Number->format($semestre->ID_SEMESTRE) ?></td>
                     <td><?= h($semestre->NOMBRE) ?></td>
                     <td class="actions btn-group">
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $semestre->ID_SEMESTRE]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $semestre->ID_SEMESTRE], ['confirm' => __('Esta seguro de eliminar el semestre con id # {0}?', $semestre->ID_SEMESTRE)]) ?>
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['action' => 'edit', $semestre->ID_SEMESTRE], ['class'=>'btn btn-warning fs-3 p-3 text-dark', 'escape'=>false]) ?>
+                        <?= $this->Form->postLink('<i class="bi bi-trash3"></i>', ['action' => 'delete', $semestre->ID_SEMESTRE], ['confirm' => __('Esta seguro de eliminar el semestre con id # {0}?', $semestre->ID_SEMESTRE), 'class'=>'btn btn-danger fs-3 p-3 text-light', 'escape'=>false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -5,7 +5,7 @@
  */
 ?>
 <div class="carrera index content">
-    <?= $this->Html->link(__('Nueva Carrera'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link('<i class="bi bi-plus-circle"></i>', ['action' => 'add'], ['class'=>'btn btn-primary float-right fs-2 px-5 px-2', 'escape'=>false]) ?>
     <h3><?= __('Carreras') ?></h3>
     <div class="table-responsive">
         <table>
@@ -25,10 +25,10 @@
                     <td><?= h($carrera->NOMBRE) ?></td>
                     <td><?= h($carrera->DESCRIPCION) ?></td>
                     <td><?= h($carrera->ESTADO ? __('Activa') : __('Inactiva')) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $carrera->ID_CARRERA]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $carrera->ID_CARRERA]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $carrera->ID_CARRERA], ['confirm' => __('Esta seguro de borrar la carrera con id # {0}?', $carrera->ID_CARRERA)]) ?>
+                    <td class="actions btn-group">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['action' => 'view', $carrera->ID_CARRERA], ['class'=>'btn btn-success fs-3 p-3 text-light', 'escape'=>false]) ?>
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['action' => 'edit', $carrera->ID_CARRERA], ['class'=>'btn btn-warning fs-3 p-3 text-dark', 'escape'=>false]) ?>
+                        <?= $this->Form->postLink('<i class="bi bi-trash3"></i>', ['action' => 'delete', $carrera->ID_CARRERA], ['confirm' => __('Esta seguro de borrar la carrera con id # {0}?', $carrera->ID_CARRERA), 'class'=>'btn btn-danger fs-3 p-3 text-light', 'escape'=>false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

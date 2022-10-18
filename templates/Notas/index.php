@@ -5,7 +5,7 @@
  */
 ?>
 <div class="notas index content">
-    <?= $this->Html->link(__('Agregar Nota de un Curso'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link('<i class="bi bi-plus-circle"></i>', ['action' => 'add'], ['class'=>'btn btn-primary float-right fs-2 px-5 px-2', 'escape'=>false]) ?>
     <h3><?= __('Notas') ?></h3>
     <div class="table-responsive">
         <table>
@@ -33,10 +33,10 @@
                     <td><?= h($nota->FECHA->nice()) ?></td>
                     <td><?= h($nota->FECHA_MODIFICACION->nice()) ?></td>
                     <td><?= h($nota->SECCION) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $nota->ID_NOTAS]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $nota->ID_NOTAS]) ?>
-                        <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $nota->ID_NOTAS], ['confirm' => __('Esta seguro de eliminar la nota con id # {0}?', $nota->ID_NOTAS)]) ?>
+                    <td class="actions btn-group">
+                        <?= $this->Html->link('<i class="bi bi-eye"></i>', ['action' => 'view', $nota->ID_NOTAS], ['class'=>'btn btn-success fs-3 p-3 text-light', 'escape'=>false]) ?>
+                        <?= $this->Html->link('<i class="bi bi-pencil-square"></i>', ['action' => 'edit', $nota->ID_NOTAS], ['class'=>'btn btn-warning fs-3 p-3 text-dark', 'escape'=>false]) ?>
+                        <?= $this->Form->postLink('<i class="bi bi-trash3"></i>', ['action' => 'delete', $nota->ID_NOTAS], ['confirm' => __('Esta seguro de eliminar la nota con id # {0}?', $nota->ID_NOTAS), 'class'=>'btn btn-danger fs-3 p-3 text-light', 'escape'=>false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -28,11 +28,11 @@ class CursoController extends AppController
         if ($this->request->is('post')) {
             $curso = $this->Curso->patchEntity($curso, $this->request->getData());
             if ($this->Curso->save($curso)) {
-                $this->Flash->success(__('The curso has been saved.'));
+                $this->Flash->success(__('Se guardo correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The curso could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente.'));
         }
 
         $semestres = $this->Curso->Semestre->find()->all()->combine('ID_SEMESTRE', 'NOMBRE');
@@ -42,16 +42,16 @@ class CursoController extends AppController
     public function edit($id = null)
     {
         $curso = $this->Curso->get($id, [
-            'contain' => ['Semestre'],
+            'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $curso = $this->Curso->patchEntity($curso, $this->request->getData());
             if ($this->Curso->save($curso)) {
-                $this->Flash->success(__('The curso has been saved.'));
+                $this->Flash->success(__('Se guardo correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The curso could not be saved. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba guardar en la base de datos. Por favor, intente de nuevamente.'));
         }
 
         $semestres = $this->Curso->Semestre->find()->all()->combine('ID_SEMESTRE', 'NOMBRE');
@@ -71,9 +71,9 @@ class CursoController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $curso = $this->Curso->get($id);
         if ($this->Curso->delete($curso)) {
-            $this->Flash->success(__('The curso has been deleted.'));
+            $this->Flash->success(__('Se elimino correctamente.'));
         } else {
-            $this->Flash->error(__('The curso could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Ocurrió un error mientras se intentaba eliminar de la base de datos. Por favor, intente de nuevamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

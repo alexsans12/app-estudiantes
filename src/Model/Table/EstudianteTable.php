@@ -22,6 +22,16 @@ class EstudianteTable extends Table
             'foreignKey' => 'ID_CARRERA',
             'targetForeignKey' => 'ID_CARRERA',
         ]);
+
+        $this->hasMany('Observacion', [
+            'foreignKey' => 'ID_ESTUDIANTE',
+            'targetForeignKey' => 'ID_ESTUDIANTE',
+        ]);
+
+        $this->hasMany('Notas', [
+            'foreignKey' => 'ID_ESTUDIANTE',
+            'targetForeignKey' => 'ID_ESTUDIANTE',
+        ]);
     }
 
     public function validationDefault(Validator $validator): Validator
