@@ -6,6 +6,7 @@ namespace App\Controller;
 use Cake\Routing\Router;
 use Spatie\Browsershot\Browsershot;
 use src\Model\Entity;
+use Cake\Chronos\Chronos;
 
 class ReportesController extends AppController
 {
@@ -54,6 +55,32 @@ class ReportesController extends AppController
 
             if (isset($obj['ID_ESTUDIANTE'])) {
                 $id = $obj['ID_ESTUDIANTE'];
+                $pdf = Browsershot::url(Router::url([
+                    '__host'=>'apache',
+                    '__port'=>'8888',
+                    'controller'=>'estudiante',
+                    'action'=>'observaciones',
+                    $id
+                ], true))
+                    ->noSandbox()
+                    ->pdf();
+                $response = $this->getResponse();
+                $response = $response->withStringBody($pdf)
+                    ->withType('pdf');
+                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-observaciones-".$id.".pdf");
+                return $response;
+            }
+        }
+    }
+
+    public function estudiantes() {
+        if ($this->request->is('post')) {
+            $obj = $this->request->getData();
+            var_dump($obj);
+            die();
+
+            if (isset($obj['ID_CARRERA'])) {
+                $id = $obj['ID_CARRERA'];
                 $pdf = Browsershot::url(Router::url([
                     '__host'=>'apache',
                     '__port'=>'8888',

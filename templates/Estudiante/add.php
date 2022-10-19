@@ -18,7 +18,7 @@
                 <legend><?= __('Agregar Estudiante') ?></legend>
                 <?php
                     echo $this->Form->control('NOMBRE', ['label'=>'Nombre']);
-                    echo $this->Form->control('APELLIDO', ['label'=>'Apellido']);
+                    echo $this->Form->control('APELLIDO', ['label'=>'Apellido', 'type'=>'text']);
                     echo $this->Form->control('FOTOGRAFIA', ['label'=>'Fotografía', 'type'=>'file', 'required'=>false]);
                     echo $this->Form->control('carreras._id', ['label' => 'Escoge una Carrera', 'name' => 'ID_CARRERA', 'options' => $carreras]);
                     echo $this->Form->control('FECHA_NACIMIENTO', ['label'=>'Fecha de Nacimiento']);

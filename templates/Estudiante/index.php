@@ -5,7 +5,7 @@
  */
 ?>
 <div class="estudiante index content mb-5">
-    <a href="/estudiante/add" class="btn btn-primary float-right fs-2 px-5 px-2"><i class="bi bi-plus-circle"></i></a>
+    <?= $this->Html->link('<i class="bi bi-plus-circle"></i>', ['action' => 'add'], ['class'=>'btn btn-primary float-right fs-2 px-5 px-2', 'escape'=>false]) ?>
     <h3><?= __('Estudiantes') ?></h3>
     <div class="table-responsive">
         <table>
