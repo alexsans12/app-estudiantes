@@ -25,7 +25,7 @@ $cakeDescription = 'Aplicación de Estudiantes';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light top-nav">
+<nav class="navbar navbar-expand-lg top-nav">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,23 +35,36 @@ $cakeDescription = 'Aplicación de Estudiantes';
             </div>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03" style="flex-grow: 0;">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-nav-links">
-                    <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Estudiantes'), ['controller'=>'estudiante', 'action' => 'index'], ['class'=>'nav-link']) ?>
+                    <li class="nav-item dropdown" style="margin-bottom: 0;">
+                        <a href="#" class="nav-link dropdown-toggle <?=($this->request->getParam("controller") == "Estudiante") || ($this->request->getParam("controller") == "Notas") || ($this->request->getParam("controller") == "Observacion") ? 'active' : ''?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">Estudiantes</a>
+                        <ul class="dropdown-menu">
+                            <li style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Estudiantes'), ['controller'=>'estudiante', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Estudiante") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4', 'style'=>'margin:0;']) ?>
+                            </li>
+                            <li style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Notas'), ['controller'=>'notas', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Notas") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4', 'style'=>'margin:0;']) ?>
+                            </li>
+                            <li style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Observaciones'), ['controller'=>'observacion', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Observacion") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4','style'=>'margin:0;']) ?>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown" style="margin-bottom: 0;">
+                        <a href="#" class="nav-link dropdown-toggle <?=($this->request->getParam("controller") == "Curso") || ($this->request->getParam("controller") == "Carrera") || ($this->request->getParam("controller") == "Semestre") ? 'active' : ''?>" role="button" data-bs-toggle="dropdown" aria-expanded="false">Universidad</a>
+                        <ul class="dropdown-menu">
+                            <li style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Cursos'), ['controller'=>'curso', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Curso") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4','style'=>'margin:0;']) ?>
+                            </li>
+                            <li class="nav-item" style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Carreras'), ['controller'=>'carrera', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Carrera") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4','style'=>'margin:0;']) ?>
+                            </li>
+                            <li class="nav-item" style="margin-bottom: 0;">
+                                <?= $this->Html->link(__('Semestres'), ['controller'=>'semestre', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Semestre") ? 'dropdown-item fs-4 active' : 'dropdown-item fs-4','style'=>'margin:0;']) ?>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Notas'), ['controller'=>'notas', 'action' => 'index'], ['class'=>'nav-link']) ?>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Observaciones'), ['controller'=>'observacion', 'action' => 'index'], ['class'=>'nav-link']) ?>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Cursos'), ['controller'=>'curso', 'action' => 'index'], ['class'=>'nav-link']) ?>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Carreras'), ['controller'=>'carrera', 'action' => 'index'], ['class'=>'nav-link']) ?>
-                    </li>
-                    <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Semestres'), ['controller'=>'semestre', 'action' => 'index'], ['class'=>'nav-link']) ?>
+                        <?= $this->Html->link(__('Reportes'), ['controller'=>'reportes', 'action' => 'index'], ['class'=>'nav-link']) ?>
                     </li>
                 </ul>
             </div>

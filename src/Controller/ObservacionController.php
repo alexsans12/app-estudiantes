@@ -3,12 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * Observacion Controller
- *
- * @property \App\Model\Table\ObservacionTable $Observacion
- * @method \App\Model\Entity\Observacion[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class ObservacionController extends AppController
 {
     /**

@@ -3,12 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-/**
- * Carrera Controller
- *
- * @property \App\Model\Table\CarreraTable $Carrera
- * @method \App\Model\Entity\Carrera[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class CarreraController extends AppController
 {
     public function initialize(): void
@@ -19,11 +13,6 @@ class CarreraController extends AppController
         $this->loadComponent('Flash'); // Include the FlashComponent
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
     public function index()
     {
         $carrera = $this->Paginator->paginate($this->Carrera->find());

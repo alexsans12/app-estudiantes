@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <th><?= __('Fecha de Nacimiento') ?></th>
-                    <td><?= h($estudiante->FECHA_NACIMIENTO) ?></td>
+                    <td><?= h($estudiante->FECHA_NACIMIENTO->nice()) ?></td>
                 </tr>
             </table>
         </div>

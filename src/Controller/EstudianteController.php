@@ -20,10 +20,6 @@ class EstudianteController extends AppController
             'contain' => ['Carrera', 'Observacion', 'Notas'],
         ]);
 
-        /*echo "<pre>";
-        var_dump($estudiante->notas);
-        die();*/
-
         $cursos = $this->getTableLocator()->get('Curso')->find()->all()->combine('ID_CURSO', 'NOMBRE')->ToArray();
 
         $this->set(compact('estudiante', 'cursos'));
@@ -113,5 +109,18 @@ class EstudianteController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function observaciones($id =null)
+    {
+        $this->viewBuilder()->disableAutoLayout();
+
+        $estudiante = $this->Estudiante->get($id, [
+            'contain' => ['Carrera', 'Observacion'],
+        ]);
+
+        $cursos = $this->getTableLocator()->get('Curso')->find()->all()->combine('ID_CURSO', 'NOMBRE')->ToArray();
+
+        $this->set(compact('estudiante', 'cursos'));
     }
 }
