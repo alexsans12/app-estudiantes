@@ -101,12 +101,10 @@ class EstudianteController extends AppController
         $estudiante = $this->Estudiante->get($id);
 
         if ($this->Estudiante->delete($estudiante)) {
-            if (file_exists(WWW_ROOT.'img/fotografias/'.$estudiante->FOTOGRAFIA)) {
+            /*if (file_exists(WWW_ROOT.'img/fotografias/'.$estudiante->FOTOGRAFIA)) {
                 unlink(WWW_ROOT.'img/fotografias/'.$estudiante->FOTOGRAFIA);
-            }
+            }*/
             $this->Flash->success(__('Se eliminado correctamente.'));
-
-            return $this->redirect(['action' => 'index']);
         } else {
             $this->Flash->error(__('Ocurrió un error mientras se intentaba eliminar de la base de datos. Por favor, intente de nuevamente.'));
         }
