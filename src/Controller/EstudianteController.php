@@ -36,7 +36,7 @@ class EstudianteController extends AppController
             if ($image && $image->getClientFileName()) {
                 $timestamp = FrozenTime::now()->toUnixString();
                 $imageName = $timestamp."_".$image->getClientFileName();
-                $folder = dirname(__FILE__)."img/fotografias/".$imageName;
+                $folder = WWW_ROOT.'img/fotografias/'.$imageName;
                 $estudiante->FOTOGRAFIA = $imageName;
                 $image->moveTo($folder);
             } else {
@@ -65,17 +65,19 @@ class EstudianteController extends AppController
 
             $estudiante = $this->Estudiante->patchEntity($estudiante, $this->request->getData());
 
+            $estudiante->APELLIDO = WWW_ROOT;
+
             $image = $this->request->getData('FOTOGRAFIA');
             $estudiante->FOTOGRAFIA = $imageOld;
 
             if ($image->getClientFileName()) {
-                if (file_exists(dirname(__FILE__)."img/fotografias/".$imageOld)) {
-                    unlink(dirname(__FILE__)."img/fotografias/".$imageOld);
+                if (file_exists(WWW_ROOT.'img/fotografias/'.$imageOld)) {
+                    unlink(WWW_ROOT.'img/fotografias/'.$imageOld);
                 }
 
                 $timestamp = FrozenTime::now()->toUnixString();
                 $imageName = $timestamp."_".$image->getClientFileName();
-                $folder = dirname(__FILE__)."img/fotografias/".$imageName;
+                $folder = WWW_ROOT.'img/fotografias/'.$imageName;
                 $estudiante->FOTOGRAFIA = $imageName;
                 $image->moveTo($folder);
             }
