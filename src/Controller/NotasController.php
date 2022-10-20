@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Datasource\ConnectionManager;
+
 class NotasController extends AppController
 {
     public function index()
@@ -97,5 +99,21 @@ class NotasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function notas($seccion = null, $curso = null, $carrera = null)
+    {
+        $this->viewBuilder()->disableAutoLayout();
+
+        $db = ConnectionManager::get("default");
+
+        $query = $db->execute("SELECT n.ID_NOTAS, n.NOTA, n.APROBADO, CONCAT(e.NOMBRE,' ',e.APELLIDO) AS NOMBRE_COMPLETO from notas n
+        INNER JOIN estudiante e ON (n.ID_ESTUDIANTE=e.ID_ESTUDIANTE)
+        WHERE n.SECCION = '$seccion' AND n.ID_CURSO = $curso AND e.ID_CARRERA = $carrera")->fetchAll();
+
+        $carrera = $this->getTableLocator()->get('Carrera')->get($carrera);
+        $curso = $this->getTableLocator()->get('Curso')->get($curso);
+
+        $this->set(compact('query', 'carrera', 'curso', 'seccion'));
     }
 }

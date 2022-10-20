@@ -4,8 +4,8 @@
  * @var \App\Model\Entity\Estudiante $estudiante
  */
 ?>
-<div class="row">
-    <aside class="column">
+<div class="row mb-5">
+    <aside class="col-3">
         <div class="side-nav">
             <h4 class="heading"><?= __('Acciones') ?></h4>
             <?= $this->Form->postLink(

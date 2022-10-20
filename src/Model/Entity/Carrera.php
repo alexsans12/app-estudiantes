@@ -20,5 +20,6 @@ class Carrera extends Entity
         'NOMBRE' => true,
         'DESCRIPCION' => true,
         'ESTADO' => true,
+        'Estudiante' => true,
     ];
 }

@@ -18,19 +18,24 @@ class EstudianteTable extends Table
         $this->setDisplayField('ID_ESTUDIANTE');
         $this->setPrimaryKey('ID_ESTUDIANTE');
 
+
         $this->hasOne('Carrera', [
             'foreignKey' => 'ID_CARRERA',
             'targetForeignKey' => 'ID_CARRERA',
-        ]);
+            'bindingKey' => 'ID_CARRERA',
+        ])
+            ->setDependent(true);
 
         $this->hasMany('Observacion', [
             'foreignKey' => 'ID_ESTUDIANTE',
             'targetForeignKey' => 'ID_ESTUDIANTE',
+            'bindingKey' => 'ID_ESTUDIANTE',
         ]);
 
         $this->hasMany('Notas', [
             'foreignKey' => 'ID_ESTUDIANTE',
             'targetForeignKey' => 'ID_ESTUDIANTE',
+            'bindingKey' => 'ID_ESTUDIANTE',
         ]);
     }
 

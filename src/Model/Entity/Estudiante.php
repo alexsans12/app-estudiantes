@@ -13,6 +13,7 @@ class Estudiante extends Entity
         'FOTOGRAFIA' => true,
         'FECHA_NACIMIENTO' => true,
         'ID_CARRERA' => true,
+        'Carrera' => true,
         'Observacion' => true,
         'Notas' => true,
     ];

@@ -41,7 +41,11 @@ class CarreraTable extends Table
         $this->setDisplayField('ID_CARRERA');
         $this->setPrimaryKey('ID_CARRERA');
 
-        $this->hasMany('Estudiante');
+        $this->hasMany('Estudiante', [
+            'foreignKey' => 'ID_CARRERA',
+            'targetForeignKey' => 'ID_CARRERA',
+            'bindingKey' => 'ID_CARRERA',
+        ]);
     }
 
     /**

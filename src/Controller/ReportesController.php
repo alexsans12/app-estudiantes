@@ -13,11 +13,13 @@ class ReportesController extends AppController
     public function initialize(): void {
         $this->loadModel('Estudiante');
         $this->loadModel('Carrera');
+        $this->loadModel('Notas');
     }
 
     public function index() {
         $estudiante = $this->Estudiante->newEmptyEntity();
         $carrera = $this->Carrera->newEmptyEntity();
+        $nota = $this->Notas->newEmptyEntity();
 
         $query = $this->Estudiante->find();
         $estudiantes = $query->select(['ID_ESTUDIANTE', 'NOMBRE' => $query->func()->concat([
@@ -29,24 +31,11 @@ class ReportesController extends AppController
 
         $carreras = $this->getTableLocator()->get('Carrera')->find()->all()->combine('ID_CARRERA', 'NOMBRE')->ToArray();
 
-        $this->set(compact('estudiante','estudiantes', 'carrera','carreras'));
-    }
+        $cursos = $this->getTableLocator()->get('Curso')->find()->all()->combine('ID_CURSO', 'NOMBRE')->ToArray();
 
-    public function create() {
-        $pdf = Browsershot::url(Router::url([
-            '__host'=>'apache',
-            '__port'=>'8888',
-            'controller'=>'estudiante',
-            'action'=>'view',
-            1
-        ], true))
-            ->noSandbox()
-            ->pdf();
-        $response = $this->getResponse();
-        $response = $response->withStringBody($pdf)
-            ->withType('pdf');
+        $secciones = $this->getTableLocator()->get('Notas')->find()->select('SECCION')->distinct('SECCION')->all()->combine('SECCION', 'SECCION')->ToArray();
 
-        return $response;
+        $this->set(compact('estudiante','estudiantes', 'carrera','carreras', 'nota', 'cursos','secciones'));
     }
 
     public function observaciones() {
@@ -68,6 +57,7 @@ class ReportesController extends AppController
                 $response = $response->withStringBody($pdf)
                     ->withType('pdf');
                 $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-observaciones-".$id.".pdf");
+
                 return $response;
             }
         }
@@ -76,23 +66,55 @@ class ReportesController extends AppController
     public function estudiantes() {
         if ($this->request->is('post')) {
             $obj = $this->request->getData();
-            var_dump($obj);
-            die();
 
             if (isset($obj['ID_CARRERA'])) {
                 $id = $obj['ID_CARRERA'];
                 $pdf = Browsershot::url(Router::url([
                     '__host'=>'apache',
                     '__port'=>'8888',
-                    'controller'=>'estudiante',
-                    'action'=>'observaciones',
-                    $id
+                    'controller'=>'carrera',
+                    'action'=>'estudiantes',
+                    $id,
                 ], true))
                     ->noSandbox()
                     ->pdf();
                 $response = $this->getResponse();
                 $response = $response->withStringBody($pdf)
                     ->withType('pdf');
+
+                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-lista-estudiantes-".$id.".pdf");
+
+                return $response;
+            }
+        }
+    }
+
+    public function notas() {
+        if ($this->request->is('post')) {
+            $obj = $this->request->getData();
+
+            if (isset($obj['ID_CARRERA']) && isset($obj['SECCION']) && isset($obj['ID_CURSO'])) {
+                $seccion = $obj['SECCION'];
+                $curso = $obj['ID_CURSO'];
+                $carrera = $obj['ID_CARRERA'];
+
+
+                $pdf = Browsershot::url(Router::url([
+                    '__host'=>'apache',
+                    '__port'=>'8888',
+                    'controller'=>'notas',
+                    'action'=>'notas',
+                    $seccion,
+                    $curso,
+                    $carrera,
+                ], true))
+                    ->noSandbox()
+                    ->pdf();
+                $response = $this->getResponse();
+                $response = $response->withStringBody($pdf)
+                    ->withType('pdf');
+
+                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-lista-estudiantes-".$seccion.".pdf");
 
                 return $response;
             }

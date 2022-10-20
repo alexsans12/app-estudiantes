@@ -79,13 +79,6 @@ class CarreraController extends AppController
         $this->set(compact('carrera'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Carrera id.
-     * @return \Cake\Http\Response|null|void Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -97,5 +90,16 @@ class CarreraController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function estudiantes($id = null)
+    {
+        $this->viewBuilder()->disableAutoLayout();
+
+        $carrera = $this->Carrera->get($id, [
+            'contain' => ['Estudiante'],
+        ]);
+
+        $this->set(compact('carrera'));
     }
 }
