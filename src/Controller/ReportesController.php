@@ -45,8 +45,8 @@ class ReportesController extends AppController
             if (isset($obj['ID_ESTUDIANTE'])) {
                 $id = $obj['ID_ESTUDIANTE'];
                 $pdf = Browsershot::url(Router::url([
-                    '__host'=>'apache',
-                    '__port'=>$_SERVER["SERVER_PORT"],
+                    '_host' => $_SERVER["SERVER_NAME"],
+                    '_port' => $_SERVER["SERVER_PORT"],
                     'controller'=>'estudiante',
                     'action'=>'observaciones',
                     $id
@@ -70,8 +70,8 @@ class ReportesController extends AppController
             if (isset($obj['ID_CARRERA'])) {
                 $id = $obj['ID_CARRERA'];
                 $pdf = Browsershot::url(Router::url([
-                    '__host'=>'apache',
-                    '__port'=>$_SERVER["SERVER_PORT"],
+                    '_host' => $_SERVER["SERVER_NAME"],
+                    '_port' => $_SERVER["SERVER_PORT"],
                     'controller'=>'carrera',
                     'action'=>'estudiantes',
                     $id,
@@ -100,8 +100,8 @@ class ReportesController extends AppController
 
 
                 $pdf = Browsershot::url(Router::url([
-                    '__host'=>'apache',
-                    '__port'=>$_SERVER["SERVER_PORT"],
+                    '_host' => $_SERVER["SERVER_NAME"],
+                    '_port' => $_SERVER["SERVER_PORT"],
                     'controller'=>'notas',
                     'action'=>'notas',
                     $seccion,
