@@ -23,8 +23,7 @@ class EstudianteTable extends Table
             'foreignKey' => 'ID_CARRERA',
             'targetForeignKey' => 'ID_CARRERA',
             'bindingKey' => 'ID_CARRERA',
-        ])
-            ->setDependent(true);
+        ]);
 
         $this->hasMany('Observacion', [
             'foreignKey' => 'ID_ESTUDIANTE',
