@@ -102,8 +102,8 @@ class EstudianteController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $estudiante = $this->Estudiante->get($id);
         if ($this->Estudiante->delete($estudiante)) {
-            if (file_exists(WWW_ROOT."img/fotografias/".$estudiante->FOTOGRAFIA)) {
-                unlink(WWW_ROOT."img/fotografias/".$estudiante->FOTOGRAFIA);
+            if (file_exists(WWW_ROOT.'img/fotografias/'.$estudiante->FOTOGRAFIA)) {
+                unlink(WWW_ROOT.'img/fotografias/'.$estudiante->FOTOGRAFIA);
             }
             $this->Flash->success(__('Se eliminado correctamente.'));
         } else {
