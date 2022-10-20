@@ -65,8 +65,6 @@ class EstudianteController extends AppController
 
             $estudiante = $this->Estudiante->patchEntity($estudiante, $this->request->getData());
 
-            $estudiante->APELLIDO = WWW_ROOT;
-
             $image = $this->request->getData('FOTOGRAFIA');
             $estudiante->FOTOGRAFIA = $imageOld;
 

@@ -16,7 +16,7 @@
             <?= $this->Html->link(__('Listado de Estudiantes'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column-responsive column-80">
+    <div class="col-9">
         <div class="estudiante form content">
             <?= $this->Form->create($estudiante, ['type'=>'file']) ?>
             <fieldset>
