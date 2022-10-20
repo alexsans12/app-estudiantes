@@ -70,7 +70,7 @@ class ReportesController extends AppController
             if (isset($obj['ID_CARRERA'])) {
                 $id = $obj['ID_CARRERA'];
                 $pdf = Browsershot::url(Router::url([
-                    '_host' => $_SERVER["SERVER_NAME"],
+                    '_host' => 'Apache',
                     '_port' => $_SERVER["SERVER_PORT"],
                     'controller'=>'carrera',
                     'action'=>'estudiantes',
