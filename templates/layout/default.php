@@ -64,7 +64,7 @@ $cakeDescription = 'Aplicación de Estudiantes';
                         </ul>
                     </li>
                     <li class="nav-item" style="margin-bottom: 0;">
-                        <?= $this->Html->link(__('Reportes'), ['controller'=>'reportes', 'action' => 'index'], ['class'=>'nav-link']) ?>
+                        <?= $this->Html->link(__('Reportes'), ['controller'=>'reportes', 'action' => 'index'], ['class'=>($this->request->getParam("controller") == "Notas") ? 'dropdown-item fs-4 active nav-link' : 'dropdown-item fs-4 nav-link', 'style'=>'margin:0;']) ?>
                     </li>
                 </ul>
             </div>

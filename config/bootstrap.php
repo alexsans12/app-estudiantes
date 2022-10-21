@@ -236,6 +236,5 @@ Configure::write('CakePdf', [
         'top' => 10
     ],
     'orientation' => 'portrait',
-    'download' => true,
-    'delay'=>3000
+    'download' => true
 ]);
