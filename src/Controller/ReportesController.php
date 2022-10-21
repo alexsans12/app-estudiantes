@@ -50,6 +50,8 @@ class ReportesController extends AppController
                     $id
                 ], true))
                     ->noSandbox()
+                    ->preventUnsuccessfulResponse()
+                    ->setOption('args', ['--disable-web-security'])
                     ->pdf();
                 $response = $this->getResponse();
                 $response = $response->withStringBody($pdf)
@@ -72,6 +74,9 @@ class ReportesController extends AppController
                     'action'=>'estudiantes',
                     $id
                 ], true))
+                    ->noSandbox()
+                    ->preventUnsuccessfulResponse()
+                    ->setOption('args', ['--disable-web-security'])
                     ->pdf();
                 $response = $this->getResponse();
                 $response = $response->withStringBody($pdf)
@@ -102,6 +107,8 @@ class ReportesController extends AppController
                     $carrera,
                 ], true))
                     ->noSandbox()
+                    ->preventUnsuccessfulResponse()
+                    ->setOption('args', ['--disable-web-security'])
                     ->pdf();
                 $response = $this->getResponse();
                 $response = $response->withStringBody($pdf)
