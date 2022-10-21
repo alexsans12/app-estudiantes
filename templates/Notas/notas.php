@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?=$this->Html->css('bootstrap.min.css', ['fullBase' => true])?>
-    <?=$this->Html->css('home.css', ['fullBase' => true])?>
-    <style>
-        body {
-            font-family: 'Raleway', sans-serif;
-        }
-    </style>
+    <title>Reporte de Notas</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
-<body class="container">
+<body class="container position-relative">
+    <?=$this->Html->link('Regresar a reportes', ['controller'=>'reportes','action'=>'index'], ['class'=>'position-sticky top-0 start-0 translate-middle btn btn-danger mt-5'])?>
     <div class="row justify-content-center">
         <div class="col-12 mt-5 mb-5">
             <div class="mb-3">
