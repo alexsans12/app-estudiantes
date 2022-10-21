@@ -97,14 +97,6 @@ class CarreraController extends AppController
     public function estudiantes($id = null)
     {
         $this->viewBuilder()->disableAutoLayout();
-        //$this->viewBuilder()->setClassName('CakePdf.pdf');
-        $this->viewBuilder()->setOption(
-            'pdfConfig',
-            [
-                'download' => true,
-                'filename' => Chronos::now()->format('Y-m-d')."-lista-de-estudiantes-".$id.".pdf"
-            ]
-        );
 
         $carrera = $this->Carrera->get($id, [
             'contain' => ['Estudiante'],

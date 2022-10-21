@@ -308,10 +308,7 @@ return [
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [
-                \PDO::MYSQL_ATTR_SSL_CA => 'src/ca-certificate.cer',
-                \PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => 'true',
-            ],
+            'flags' => [],
             'cacheMetadata' => true,
             'log' => false,
 
