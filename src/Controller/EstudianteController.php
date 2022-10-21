@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\I18n\FrozenTime;
+use Cake\Chronos\Chronos;
 
 class EstudianteController extends AppController
 {
@@ -115,6 +116,14 @@ class EstudianteController extends AppController
     public function observaciones($id =null)
     {
         $this->viewBuilder()->disableAutoLayout();
+        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        $this->viewBuilder()->setOption(
+            'pdfConfig',
+            [
+                'download' => true,
+                'filename' => Chronos::now()->format('Y-m-d')."-observaciones-".$id.".pdf"
+            ]
+        );
 
         $estudiante = $this->Estudiante->get($id, [
             'contain' => ['Carrera', 'Observacion'],

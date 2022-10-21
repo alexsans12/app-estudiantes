@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Chronos\Chronos;
 use Cake\Datasource\ConnectionManager;
 
 class NotasController extends AppController
@@ -104,6 +105,14 @@ class NotasController extends AppController
     public function notas($seccion = null, $curso = null, $carrera = null)
     {
         $this->viewBuilder()->disableAutoLayout();
+        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        $this->viewBuilder()->setOption(
+            'pdfConfig',
+            [
+                'download' => true,
+                'filename' => Chronos::now()->format('Y-m-d')."-notas-de-estudiantes-".$seccion.".pdf"
+            ]
+        );
 
         $db = ConnectionManager::get("default");
 

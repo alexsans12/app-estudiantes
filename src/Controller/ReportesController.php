@@ -4,9 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Routing\Router;
-use Spatie\Browsershot\Browsershot;
 use src\Model\Entity;
-use Cake\Chronos\Chronos;
 
 class ReportesController extends AppController
 {
@@ -44,21 +42,12 @@ class ReportesController extends AppController
 
             if (isset($obj['ID_ESTUDIANTE'])) {
                 $id = $obj['ID_ESTUDIANTE'];
-                $pdf = Browsershot::url(Router::url([
-                    'controller'=>'estudiante',
-                    'action'=>'observaciones',
-                    $id
-                ], true))
-                    ->noSandbox()
-                    ->preventUnsuccessfulResponse()
-                    ->setOption('args', ['--disable-web-security'])
-                    ->pdf();
-                $response = $this->getResponse();
-                $response = $response->withStringBody($pdf)
-                    ->withType('pdf');
-                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-observaciones-".$id.".pdf");
 
-                return $response;
+                return $this->redirect([
+                    'controller' => 'estudiante',
+                    'action' => 'observaciones',
+                    $id
+                ]);
             }
         }
     }
@@ -69,22 +58,12 @@ class ReportesController extends AppController
 
             if (isset($obj['ID_CARRERA'])) {
                 $id = $obj['ID_CARRERA'];
-                $pdf = Browsershot::url(Router::url([
-                    'controller'=>'carrera',
-                    'action'=>'estudiantes',
+
+                return $this->redirect([
+                    'controller' => 'carrera',
+                    'action' => 'estudiantes',
                     $id
-                ], true))
-                    ->noSandbox()
-                    ->preventUnsuccessfulResponse()
-                    ->setOption('args', ['--disable-web-security'])
-                    ->pdf();
-                $response = $this->getResponse();
-                $response = $response->withStringBody($pdf)
-                    ->withType('pdf');
-
-                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-lista-estudiantes-".$id.".pdf");
-
-                return $response;
+                ]);
             }
         }
     }
@@ -98,25 +77,13 @@ class ReportesController extends AppController
                 $curso = $obj['ID_CURSO'];
                 $carrera = $obj['ID_CARRERA'];
 
-
-                $pdf = Browsershot::url(Router::url([
-                    'controller'=>'notas',
-                    'action'=>'notas',
+                return $this->redirect([
+                    'controller' => 'notas',
+                    'action' => 'notas',
                     $seccion,
                     $curso,
                     $carrera,
-                ], true))
-                    ->noSandbox()
-                    ->preventUnsuccessfulResponse()
-                    ->setOption('args', ['--disable-web-security'])
-                    ->pdf();
-                $response = $this->getResponse();
-                $response = $response->withStringBody($pdf)
-                    ->withType('pdf');
-
-                $response = $response->withDownload(Chronos::now()->format('Y-m-d')."-lista-estudiantes-".$seccion.".pdf");
-
-                return $response;
+                ]);
             }
         }
     }

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Chronos\Chronos;
+
 class CarreraController extends AppController
 {
     public function initialize(): void
@@ -95,6 +97,14 @@ class CarreraController extends AppController
     public function estudiantes($id = null)
     {
         $this->viewBuilder()->disableAutoLayout();
+        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        $this->viewBuilder()->setOption(
+            'pdfConfig',
+            [
+                'download' => true,
+                'filename' => Chronos::now()->format('Y-m-d')."-lista-de-estudiantes-".$id.".pdf"
+            ]
+        );
 
         $carrera = $this->Carrera->get($id, [
             'contain' => ['Estudiante'],
