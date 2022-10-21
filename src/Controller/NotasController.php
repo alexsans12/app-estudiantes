@@ -105,7 +105,7 @@ class NotasController extends AppController
     public function notas($seccion = null, $curso = null, $carrera = null)
     {
         $this->viewBuilder()->disableAutoLayout();
-        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        //$this->viewBuilder()->setClassName('CakePdf.pdf');
         $this->viewBuilder()->setOption(
             'pdfConfig',
             [

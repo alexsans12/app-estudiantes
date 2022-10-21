@@ -97,7 +97,7 @@ class CarreraController extends AppController
     public function estudiantes($id = null)
     {
         $this->viewBuilder()->disableAutoLayout();
-        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        //$this->viewBuilder()->setClassName('CakePdf.pdf');
         $this->viewBuilder()->setOption(
             'pdfConfig',
             [

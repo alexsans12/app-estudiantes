@@ -116,7 +116,7 @@ class EstudianteController extends AppController
     public function observaciones($id =null)
     {
         $this->viewBuilder()->disableAutoLayout();
-        $this->viewBuilder()->setClassName('CakePdf.pdf');
+        //$this->viewBuilder()->setClassName('CakePdf.pdf');
         $this->viewBuilder()->setOption(
             'pdfConfig',
             [
